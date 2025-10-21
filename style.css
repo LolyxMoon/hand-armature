@@ -102,10 +102,93 @@ button:hover {
     user-select: none;
 }
 
+/* Botón flotante de Twitter */
+.twitter-float {
+    position: fixed;
+    bottom: 80px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border: none;
+    animation: slideInRight 0.5s ease-out;
+}
+
+.twitter-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    background-color: #1a1a1a;
+}
+
+.twitter-float img {
+    width: 28px;
+    height: 28px;
+    filter: invert(1);
+}
+
+/* Animación de entrada */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Efecto de pulso */
+.twitter-float::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #000;
+    opacity: 0.3;
+    animation: pulse 2s infinite;
+    z-index: -1;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+}
+
 @media only screen and (max-width: 720px) {
     button {
         font-size: 0.75rem;
         border: 1px solid #333;
         padding: 0.5rem 1rem;
     }
-  }
+    
+    .twitter-float {
+        width: 45px;
+        height: 45px;
+        bottom: 70px;
+        right: 20px;
+    }
+    
+    .twitter-float img {
+        width: 24px;
+        height: 24px;
+    }
+}
